@@ -1,5 +1,6 @@
 """Insights endpoint — aggregated stats and chart data."""
 
+import json
 from fastapi import APIRouter
 
 router = APIRouter()
@@ -42,6 +43,13 @@ def get_insights():
     # Top 10 leads
     top_leads = []
     for _, row in df.nsmallest(10, "priority_rank").iterrows():
+        # Parse top_factors from JSON string
+        tf_raw = row.get("top_factors", "[]")
+        try:
+            top_factors = json.loads(tf_raw) if isinstance(tf_raw, str) else tf_raw
+        except (json.JSONDecodeError, TypeError):
+            top_factors = []
+
         top_leads.append({
             "lead_id": row["lead_id"],
             "property_type": row.get("property_type"),
@@ -52,6 +60,7 @@ def get_insights():
             "referral_source": row.get("referral_source"),
             "expected_profit_band": row.get("expected_profit_band") if str(row.get("expected_profit_band")) != "nan" else None,
             "priority_rank": int(row["priority_rank"]),
+            "top_factors": top_factors,
         })
 
     # Summary KPIs
