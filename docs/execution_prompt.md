@@ -15,7 +15,7 @@ Before writing any code, read these files in order:
 Then build the project following the phases in `roadmap.md` and execution steps in `execution.md`.
 
 **Key constraints — do not deviate:**
-- LLM: Gemini 2.0 Flash via `google-generativeai` package, env var `GEMINI_API_KEY` — not Claude/Anthropic
+- LLM: Gemini 2.5 Flash via `google-generativeai` package, env var `GEMINI_API_KEY` — not Claude/Anthropic
 - Queue: localStorage only — no database writes ever
 - Backend: FastAPI on port 8000 | Frontend: Next.js on port 3000
 - UI: light theme, white/off-white background, shadcn/ui default + blue primary accent

@@ -19,7 +19,7 @@
 │                                                                      │
 │  ┌──────────────────┐    ┌──────────────────────────────────────┐   │
 │  │ ML Score Engine  │    │ Gemini Client (text → lead JSON)     │   │
-│  │ (XGBoost .pkl)   │    │ (google-generativeai, gemini-2.0-flash)│  │
+│  │ (XGBoost .pkl)   │    │ (google-generativeai, gemini-2.5-flash)│  │
 │  └──────────────────┘    └──────────────────────────────────────┘   │
 │  Data loaded from data/leads_scored.csv on startup (in-memory)      │
 └──────────────────────────────────────────────────────────────────────┘

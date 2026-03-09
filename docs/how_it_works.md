@@ -121,7 +121,7 @@ When a sales rep pastes a call transcript like:
 
 > *"Hi, I'm looking to get quotes for painting the exterior of my house in Kingston's West End area. It's a detached home, about 3000 sqft. We're hoping to get it done before summer, so ideally in the next few weeks."*
 
-The tool calls the **Gemini 2.0 Flash** API with a system prompt instructing it to extract structured fields from freeform text. Gemini returns JSON:
+The tool calls the **Gemini 2.5 Flash** API with a system prompt instructing it to extract structured fields from freeform text. Gemini returns JSON:
 
 ```json
 {
@@ -208,7 +208,7 @@ A: XGBoost handles new categorical values gracefully (treats them as unknown →
 |---|---|---|
 | ML model | XGBoost | Best accuracy on tabular data at this scale; handles missing values; gives feature importance |
 | Scoring formula | Conversion Weight × Profit Band | Separates the "will they hire?" question from "how profitable is it?" — logically independent |
-| LLM for text extraction | Gemini 2.0 Flash | Free tier; handles natural language better than any regex; zero-shot structured extraction |
+| LLM for text extraction | Gemini 2.5 Flash | Free tier; handles natural language better than any regex; zero-shot structured extraction |
 | Queue persistence | localStorage | No auth needed, no backend writes, fast, sufficient for single-user demo |
 | Features dropped | weather, weekday, pets, preferred_contact | No causal mechanism linking them to conversion or profitability |
 | Half-labeled dataset | Train on labeled, predict for unlabeled | Standard semi-supervised approach for proxy-labeled datasets |

@@ -54,7 +54,7 @@ def extract_lead_from_text(text: str) -> dict:
 
     import google.generativeai as genai
     genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
 
     response = model.generate_content(
         [{"role": "user", "parts": [{"text": SYSTEM_PROMPT + "\n\nText to extract from:\n" + text}]}],

@@ -24,7 +24,7 @@ creo-tca/
 |---|---|
 | Data pipeline | Python 3.13, pandas, scikit-learn, XGBoost |
 | Backend API | FastAPI, uvicorn |
-| LLM integration | Google Gemini API – gemini-2.0-flash (free tier, `google-generativeai` package) |
+| LLM integration | Google Gemini API – gemini-2.5-flash (free tier, `google-generativeai` package) |
 | Frontend | Next.js 14 App Router, TypeScript, Tailwind CSS, shadcn/ui |
 | Charts | Recharts |
 | Database | Supabase (PostgreSQL) – read-only via REST API |
@@ -32,7 +32,7 @@ creo-tca/
 
 ## LLM Config (Gemini)
 ```
-Model: gemini-2.0-flash
+Model: gemini-2.5-flash
 Package: google-generativeai
 Key env var: GEMINI_API_KEY
 Task: extract structured lead fields from freeform text (email, call transcript, message)
