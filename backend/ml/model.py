@@ -376,9 +376,19 @@ class LeadScorer:
         df["lead_quality_score"] = scores_df["lead_quality_score"].values
         df["top_factors"] = scores_df["top_factors"].apply(json.dumps).values
 
-        # Rank by quality score
-        df["priority_rank"] = df["lead_quality_score"].rank(ascending=False, method="min").astype(int)
-        df = df.sort_values("priority_rank")
+        # Tiebreaker: map expected_profit_band to numeric for secondary sort
+        profit_band_order = {"High": 3, "Medium": 2, "Low": 1}
+        df["_profit_band_numeric"] = df["expected_profit_band"].map(profit_band_order).fillna(0).astype(int)
+
+        # Rank by quality score (primary), then profit band (secondary tiebreaker)
+        df = df.sort_values(
+            ["lead_quality_score", "_profit_band_numeric"],
+            ascending=[False, False],
+        ).reset_index(drop=True)
+        df["priority_rank"] = df.index + 1
+
+        # Drop helper column
+        df = df.drop(columns=["_profit_band_numeric"])
 
         return df
 
