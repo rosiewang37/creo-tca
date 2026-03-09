@@ -39,7 +39,18 @@ def get_leads(
     # Sort
     ascending = order.lower() == "asc"
     if sort in df.columns:
-        df = df.sort_values(sort, ascending=ascending, na_position="last")
+        if sort == "lead_quality_score":
+            # Secondary tiebreaker: higher profit band ranks above on score ties
+            profit_order = {"High": 3, "Medium": 2, "Low": 1}
+            df["_pb_num"] = df["expected_profit_band"].map(profit_order).fillna(0)
+            df = df.sort_values(
+                ["lead_quality_score", "_pb_num"],
+                ascending=[ascending, ascending],
+                na_position="last",
+            )
+            df = df.drop(columns=["_pb_num"])
+        else:
+            df = df.sort_values(sort, ascending=ascending, na_position="last")
 
     # Paginate
     start = (page - 1) * limit
